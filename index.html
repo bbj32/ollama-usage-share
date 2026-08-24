@@ -79,7 +79,7 @@
   section h3 { font-size: 14px; color: var(--muted); margin-bottom: 12px; font-weight: 600; }
   .rows { display: flex; flex-direction: column; gap: 10px; }
   .rows .row { display: flex; align-items: center; gap: 10px; font-size: 13px; }
-  .rows .bar { flex: 1; margin: 0; height: 10px; padding: 2px; }
+  .rows .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .rows .row .num { width: 64px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
   #extraAmt { color: var(--accent-text); font-weight: 700; }
   .extra-note { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: 8px; }
@@ -149,15 +149,13 @@ function meterCard(m) {
     `<div class="row"><span class="dot" style="background:${s.color || "#4f8ef7"}"></span>` +
     `<span class="name" title="${esc(s.model)}">${esc(s.model)}</span>` +
     `<span class="num">${fmtCount(s.requests)} req</span></div>`).join("")}</div>` : "";
+  const fillPct = pct == null ? 0 : Math.min(100, Math.max(0, pct));
   div.innerHTML =
     `<h2><span>${esc(label)}</span><span class="pct ${pctClass(pct)}">${pct == null ? "—" : pct + "%"}</span></h2>` +
-    `<div class="bar">${segs.slice(0, 6).map(s =>
-      `<i style="width:${Math.max(s.requests > 0 ? 1 : 0, (s.requests / total(segs)) * 100)}%;background:${s.color || "#4f8ef7"}"></i>`).join("")}</div>` +
+    `<div class="bar"><i style="width:${fillPct}%;background:#4f8ef7"></i></div>` +
     `<div class="meta"><span>${fmtReset(m.resetAt)}</span><span>${segs.length} 个模型</span></div>` + segHtml;
   return div;
 }
-
-function total(segs) { return segs.reduce((a, s) => a + (s.requests || 0), 0) || 1; }
 
 function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
 
@@ -177,11 +175,9 @@ function render(d) {
   const ws = $("weeklySec");
   if (weekly.length) {
     ws.classList.remove("hide");
-    const max = Math.max(...weekly.map(w => w.requests));
     $("weekly").innerHTML = weekly.slice(0, 10).map(w =>
       `<div class="row"><span class="dot" style="background:${w.color || "#4f8ef7"}"></span>` +
-      `<span class="name" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%" title="${esc(w.model)}">${esc(w.model)}</span>` +
-      `<div class="bar"><i style="width:${(w.requests / max) * 100}%;background:${w.color || "#4f8ef7"}"></i></div>` +
+      `<span class="name" title="${esc(w.model)}">${esc(w.model)}</span>` +
       `<span class="num">${fmtCount(w.requests)}</span></div>`).join("");
   } else ws.classList.add("hide");
 }
