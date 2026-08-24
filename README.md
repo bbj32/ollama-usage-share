@@ -2,92 +2,56 @@
 
 把 Ollama PRO 的用量公开成一个只读网页，分享给朋友看。**访客只能看到用量数字，永远接触不到你的 cookie / 邮箱 / 账号。**
 
-- 采集：GitHub Actions 每 5 分钟自动抓取一次（cookie 存在仓库 **Actions Secret**，加密存储）
-- 展示：GitHub Pages 静态页，数据落盘在 `data/usage.json`
-- 你本机：零运行、零部署
+## 链接
 
-## 架构与安全模型
+| 入口 | 地址 | 说明 |
+|---|---|---|
+| 国内 | https://bbj32.github.io/ollama-usage-share/ | GitHub Pages 静态托管，大陆直连可用；约 6~7 分钟更新 |
+| 海外 / 1 分钟 | https://ollama-usage-share.qiuninglang01.workers.dev | Cloudflare Worker 直读数据库；大陆被墙（DNS+SNI），需代理 |
+
+## 当前架构（2026-08 实况）
 
 ```
-GitHub Actions（云端定时任务）
-  OLLAMA_COOKIE（Secret，加密存储，不进代码/日志/页面）
-    ↓ 抓取 ollama.com/settings → 白名单清洗
-    ↓ 只写数字：plan / 用量% / 各模型请求数
-data/usage.json ──► GitHub Pages 静态站（访客只看这个）
+Cloudflare Worker（每分钟 cron）
+  OLLAMA_COOKIE / GH_TOKEN（Worker Secret，加密存储）
+    ↓ fetch ollama.com/settings（32KB SSR 页，无更轻的 JSON API）
+    ↓ 正则解析 data-usage-meter 属性 → 白名单清洗（剔除 email/account/cookie/HTML）
+    ↓ 写入 Cloudflare D1（usage / history / status）
+    ├─→ GET /api/usage.json ──→ 海外访客（1 分钟新鲜度）
+    └─→ 用量数字变化时（≥6 分钟节流，Git Data API 单 commit 双文件）
+          → 提交 data/usage.json + data/history.json 到本仓库
+            → GitHub Pages 自动重建 → 国内访客（~6-7 分钟新鲜度）
 ```
 
-- Cookie 只存在于仓库 Settings → Secrets，任何人（含访客）都无法从站点或仓库文件里读到
-- 清洗脚本**硬编码排除** `email` / `account` / 原始 HTML / 请求头，公开 JSON 是重建的白名单对象
-- 采集失败（如 cookie 过期）时工作流标红，GitHub 会自动给你发失败邮件提醒
+- Cookie 只存在于 Cloudflare Worker Secret；GitHub 写 token（GH_TOKEN）也只在 Cloudflare Secret
+- 公开仓库/页面里只有：页面代码 + 清洗后的数字（已扫描验证：无邮箱、账号、cookie、密钥）
+- 采集失败时页面顶部显示红色横幅（如 cookie 过期），数据保留上次成功快照
 
 ## 目录结构
 
 ```
-├─ index.html                # 仪表盘页面（中文，双进度条 + 模型分布 + 历史）
-├─ data/usage.json           # 用量快照（公开数据，定时更新）
-├─ data/history.json         # 每日用量历史（封顶 60 条）
-├─ scripts/fetch-usage.js    # 采集+清洗脚本（Actions 中运行）
-└─ .github/workflows/fetch.yml  # 每 5 分钟同步 + 手动触发
+├─ index.html                # GitHub Pages 仪表盘（国内入口，20 秒自动轮询）
+├─ data/usage.json            # 用量快照（公开数据，由 Worker 提交更新）
+├─ data/history.json          # 每日用量历史（封顶 30 条，Worker 提交）
+├─ scripts/fetch-usage.js     # legacy：GitHub Actions 采集脚本（保留作备份）
+├─ .github/workflows/fetch.yml # legacy：GitHub Actions 定时（实测 schedule 事件不触发，主链路不用）
+└─ worker/                    # Cloudflare Worker 项目（独立部署，详见 worker/README.md，不进本公开仓库）
 ```
 
-## 部署步骤（约 5 分钟）
+## 运维
 
-### 1. 建一个 GitHub 公开仓库
+- **cookie 过期**：`cd worker && wrangler secret put OLLAMA_COOKIE`（页面顶部横幅会提示同步异常）
+- **手动触发推送**：等下一个整 6 分钟窗口（数据变化时自动推）；或直接改 `data/` 提交
+- **看 Worker 日志**：`cd worker && wrangler tail`
+- **看数据库状态**：`cd worker && wrangler d1 execute ollama-usage-db --remote --command "SELECT * FROM kv WHERE key='status'"`
 
-GitHub Pages 免费版要求仓库公开。仓库名如 `ollama-usage-share`。
+## 国内访问与升级路径
 
-### 2. 推送本项目
-
-```bash
-git init
-git add .
-git commit -m "init: ollama usage share"
-git branch -M main
-git remote add origin https://github.com/<你的用户名>/ollama-usage-share.git
-git push -u origin main
-```
-
-### 3. 设置 Secret：OLLAMA_COOKIE
-
-仓库 → **Settings → Secrets and variables → Actions → New repository secret**：
-
-- Name：`OLLAMA_COOKIE`
-- Secret：粘贴 ollama.com 的登录 cookie
-
-> 从哪拿 cookie：DSH「设置 → Ollama Usage」页面粘贴的那串就是；或本机 `~/.dsh/dsh-ollama-usage/cookie.txt` 的内容。整段复制（一串以 `session=` 开头、分号分隔的键值对，通常几百字符）。
-
-### 4. 启用 Pages
-
-仓库 → **Settings → Pages** → Source 选 **Deploy from a branch** → Branch 选 `main` / `(root)` → Save。
-
-### 5. 首次同步
-
-仓库 → **Actions** → 左侧 `sync-usage` → **Run workflow**。完成后访问：
-
-```
-https://<你的用户名>.github.io/<仓库名>/
-```
-
-之后每 5 分钟自动更新。页面 60 秒自动刷新。
-
-## 更新 cookie / 手动刷新
-
-- cookie 过期（Actions 变红并邮件提醒）→ 更新 Secret 里的 `OLLAMA_COOKIE` → Actions 里手动 Run workflow
-- 随时手动刷新 → Actions → sync-usage → Run workflow
-
-## 更密调度（可选）：Cloudflare Worker 每分钟同步
-
-GitHub 定时任务下限是 5 分钟。若需要更密的刷新（每分钟），可用同目录下的 `worker/` 项目迁移到 Cloudflare Worker（cron 1 分钟 + D1 存储 + 可选访问口令）。部署步骤见 `worker/README.md`。`worker/` 不进本公开仓库。
-
-## 国内访问说明
-
-`*.github.io` 在大陆可能不稳定。两个选项：
-
-1. **绑定自定义域名**（推荐）：Settings → Pages → Custom domain 填你的域名（如 `usage.xxx.com`），并在 DNS 处解析到 `185.199.108.153` 等 Pages 地址或 CNAME 到 `<用户名>.github.io`。需要你有域名。
-2. 之后想换 Cloudflare Workers（可加访问口令、国内可挂域名）：数据管道不变，只是把 `data/usage.json` 换成 Worker 的只读接口——需要时可以帮你迁移。
+- 免费方案已到平台极限：Pages 构建上限 10 次/小时 → 国内入口约 6~7 分钟；workers.dev 大陆被墙
+- 若需国内 1 分钟直连：绑定自定义域名到 Worker（需自有域名，DNS 指向 Cloudflare）——部署见 `worker/README.md`
+- 若需访问口令/私有化：GitHub Pages 静态托管无法鉴权；需私有仓库 + Worker（`SHARE_PASS`）方案
 
 ## 隐私提示
 
-- 仓库是公开的：`data/usage.json` 与页面本身对全网可见（这正是分享的目的）。页面已带 `noindex` 防止被搜索引擎收录。
-- 公开数据只有：套餐、用量百分比、重置时间、各模型请求数、更新时间。**不含**邮箱、账号名、cookie。
-- 若想对访问者设口令/白名单，GitHub Pages 静态托管做不了真正的鉴权，届时升级到 Cloudflare Worker（`SHARE_PASS`）方案即可。
+- 公开数据只有：套餐、用量百分比、重置时间、各模型请求数、更新时间；页面带 `noindex`
+- 仓库公开 = 数据对全网可见（分享的目的）；不包含任何凭据
