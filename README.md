@@ -54,7 +54,7 @@ git push -u origin main
 - Name：`OLLAMA_COOKIE`
 - Secret：粘贴 ollama.com 的登录 cookie
 
-> 从哪拿 cookie：DSH「设置 → Ollama Usage」页面粘贴的那串就是；或本机 `~/.dsh/dsh-ollama-usage/cookie.txt` 的内容。整串复制即可（形如 `session=xxx...; __Secure-...=...`）。
+> 从哪拿 cookie：DSH「设置 → Ollama Usage」页面粘贴的那串就是；或本机 `~/.dsh/dsh-ollama-usage/cookie.txt` 的内容。整段复制（一串以 `session=` 开头、分号分隔的键值对，通常几百字符）。
 
 ### 4. 启用 Pages
 
