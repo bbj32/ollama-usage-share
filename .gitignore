@@ -2,3 +2,6 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+
+# Cloudflare Worker 版（独立部署，不进公开仓库）
+worker/

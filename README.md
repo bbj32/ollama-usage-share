@@ -75,6 +75,10 @@ https://<你的用户名>.github.io/<仓库名>/
 - cookie 过期（Actions 变红并邮件提醒）→ 更新 Secret 里的 `OLLAMA_COOKIE` → Actions 里手动 Run workflow
 - 随时手动刷新 → Actions → sync-usage → Run workflow
 
+## 更密调度（可选）：Cloudflare Worker 每分钟同步
+
+GitHub 定时任务下限是 5 分钟。若需要更密的刷新（每分钟），可用同目录下的 `worker/` 项目迁移到 Cloudflare Worker（cron 1 分钟 + D1 存储 + 可选访问口令）。部署步骤见 `worker/README.md`。`worker/` 不进本公开仓库。
+
 ## 国内访问说明
 
 `*.github.io` 在大陆可能不稳定。两个选项：
