@@ -1,62 +1,59 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-24T06:06:27.662Z",
+  "updatedAt": "2026-08-24T06:10:36.265Z",
   "meters": [
     {
-      "label": "Session usage 19.8% used",
-      "percent": 19.8,
+      "label": "Session usage",
+      "percent": 20.5,
       "resetAt": "2026-08-24T09:00:00Z",
       "segments": [
         {
-          "model": "web search",
-          "requests": 9,
-          "color": "#3b82f6"
+          "model": "deepseek-v4-flash:0731",
+          "requests": 671
         },
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 647,
-          "color": "#4f46e5"
+          "model": "web search",
+          "requests": 9
         },
         {
           "model": "deepseek-v4-flash:preview",
-          "requests": 1,
-          "color": "#4f46e5"
+          "requests": 1
         }
       ]
     },
     {
-      "label": "Weekly usage 7.9% used",
-      "percent": 7.9,
+      "label": "Weekly usage",
+      "percent": 8,
       "resetAt": "2026-08-31T00:00:00Z",
       "segments": [
         {
-          "model": "web search",
-          "requests": 14,
-          "color": "#3b82f6"
+          "model": "deepseek-v4-flash:0731",
+          "requests": 1336
         },
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 1312,
-          "color": "#4f46e5"
+          "model": "web search",
+          "requests": 14
         },
         {
           "model": "deepseek-v4-flash:preview",
-          "requests": 1,
-          "color": "#4f46e5"
+          "requests": 1
         }
       ]
     }
   ],
   "weeklyModels": [
     {
-      "model": "web search",
-      "requests": 14,
-      "color": "#3b82f6"
+      "model": "deepseek-v4-flash:0731",
+      "requests": 1336
     },
     {
-      "model": "deepseek-v4-flash:0731",
-      "requests": 1312,
-      "color": "#4f46e5"
+      "model": "web search",
+      "requests": 14
+    },
+    {
+      "model": "deepseek-v4-flash:preview",
+      "requests": 1
     }
-  ]
+  ],
+  "extraBalance": 0
 }
