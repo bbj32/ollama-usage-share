@@ -7,65 +7,85 @@
 <meta name="referrer" content="no-referrer">
 <title>Ollama Usage 分享</title>
 <style>
+  /* ── Neumorphism / Soft UI 设计系统 ─────────────────────────
+     背景 #e0e5ec · 双光源阴影（左上亮 / 右下暗）· 无渐变、无边框、无纯黑白
+     光源方向固定：-X/-Y 为白色高光，+X/+Y 为暗色阴影
+  ─────────────────────────────────────────────────────────── */
   :root {
-    --bg: #0b1020;
-    --card: #141b30;
-    --card2: #1a2340;
-    --line: #26304f;
-    --text: #e6eaf3;
-    --muted: #8b94ad;
-    --accent: #4f8ef7;
-    --good: #34d399;
-    --warn: #fbbf24;
-    --danger: #f87171;
+    --bg: #e0e5ec;
+    --bg-soft: #f0f0f3;
+    --dark: #b8bcc2;
+    --light: #ffffff;
+    --accent: #6d5dfc;
+    --accent-text: #5146d0;
+    --text: #333333;
+    --muted: #57606a;
+    --good: #1f7a72;
+    --warn: #7a5400;
+    --danger: #b02a2a;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    background: radial-gradient(1200px 600px at 70% -10%, #1c2a55 0%, var(--bg) 55%);
+    background: var(--bg);
     color: var(--text);
     font-family: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
     min-height: 100vh;
     padding: 32px 16px 64px;
   }
   .wrap { max-width: 860px; margin: 0 auto; }
-  header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
-  h1 { font-size: 22px; font-weight: 700; letter-spacing: .5px; }
+  header { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
+  h1 {
+    font-size: 22px; font-weight: 700; letter-spacing: .5px; color: var(--text);
+    text-shadow: 2px 2px 4px var(--dark), -2px -2px 4px var(--light);
+  }
   .badge {
-    font-size: 12px; padding: 3px 10px; border-radius: 999px;
-    background: rgba(79, 142, 247, .15); color: var(--accent, #8ab6ff);
-    border: 1px solid rgba(79, 142, 247, .35); text-transform: uppercase;
+    font-size: 12px; font-weight: 600; padding: 4px 14px; border-radius: 999px;
+    background: var(--bg); color: var(--accent-text); text-transform: uppercase; letter-spacing: .5px;
+    box-shadow: 4px 4px 8px var(--dark), -4px -4px 8px var(--light);
   }
   .updated { margin-left: auto; font-size: 12px; color: var(--muted); }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
   .card {
-    background: linear-gradient(180deg, var(--card2), var(--card));
-    border: 1px solid var(--line); border-radius: 16px; padding: 20px;
+    background: var(--bg);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 8px 8px 16px var(--dark), -8px -8px 16px var(--light);
+    transition: box-shadow .3s ease-in-out;
   }
-  .card h2 { font-size: 14px; color: var(--muted); font-weight: 600; display: flex; justify-content: space-between; }
-  .card h2 .pct { font-size: 26px; color: var(--text); font-weight: 700; }
+  .card:hover { box-shadow: 4px 4px 8px var(--dark), -4px -4px 8px var(--light); }
+  .card h2 {
+    font-size: 14px; color: var(--muted); font-weight: 600;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .card h2 .pct { font-size: 26px; font-weight: 700; color: var(--text); }
+  /* 凹槽轨道：inset 双阴影模拟按入表面的沟槽 */
   .bar {
-    margin: 14px 0 10px; height: 12px; border-radius: 999px;
-    background: #0d1226; overflow: hidden; display: flex;
+    margin: 14px 0 10px; height: 14px; border-radius: 999px;
+    background: var(--bg);
+    box-shadow: inset 4px 4px 8px var(--dark), inset -4px -4px 8px var(--light);
+    padding: 3px;
+    display: flex;
   }
-  .bar > i { display: block; height: 100%; min-width: 0; transition: width .8s ease; }
+  .bar > i { display: block; height: 100%; min-width: 0; border-radius: 999px; transition: width .8s ease; }
   .meta { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
-  .legend { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+  .legend { margin-top: 14px; display: flex; flex-direction: column; gap: 7px; }
   .legend .row { display: flex; align-items: center; gap: 8px; font-size: 12.5px; }
   .legend .dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
   .legend .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .legend .num { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
   .pct-warn { color: var(--warn); } .pct-danger { color: var(--danger); } .pct-good { color: var(--good); }
-  section { margin-top: 20px; }
-  section h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; font-weight: 600; }
-  .rows { display: flex; flex-direction: column; gap: 8px; }
+  section { margin-top: 22px; }
+  section h3 { font-size: 14px; color: var(--muted); margin-bottom: 12px; font-weight: 600; }
+  .rows { display: flex; flex-direction: column; gap: 10px; }
   .rows .row { display: flex; align-items: center; gap: 10px; font-size: 13px; }
-  .rows .bar { flex: 1; margin: 0; height: 8px; }
+  .rows .bar { flex: 1; margin: 0; height: 10px; padding: 2px; }
   .rows .row .num { width: 64px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+  #extraAmt { color: var(--accent-text); font-weight: 700; }
   .extra-note { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: 8px; }
-  footer { margin-top: 28px; font-size: 11.5px; color: var(--muted); line-height: 1.7; text-align: center; }
-  .err { color: var(--danger); }
+  footer { margin-top: 30px; font-size: 11.5px; color: var(--muted); line-height: 1.7; text-align: center; }
   .hide { display: none !important; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
