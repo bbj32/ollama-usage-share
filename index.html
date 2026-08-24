@@ -120,8 +120,8 @@ function fmtReset(iso) {
 
 function meterCard(m) {
   const pct = m.percent;
-  const rawLabel = String(m.label || "").replace(/\s*[\d.]+%\s*used\s*$/i, "").trim() || "Usage";
-  const label = ({ "Session usage": "Rolling window usage", "Weekly usage": "Weekly usage" })[rawLabel] || rawLabel;
+  const rawLabel = String(m.label || "").replace(/\s*[\d.]+%\s*used\s*$/i, "").trim() || "用量";
+  const label = ({ "Session usage": "本时段用量", "Weekly usage": "本周用量" })[rawLabel] || rawLabel;
   const segs = (m.segments || []).filter(s => s && s.requests > 0);
   const div = document.createElement("div");
   div.className = "card";
