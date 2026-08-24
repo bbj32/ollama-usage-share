@@ -1,67 +1,67 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-24T11:22:50.023Z",
+  "updatedAt": "2026-08-24T11:23:01.498Z",
   "meters": [
     {
-      "label": "Session usage 13.2% used",
-      "percent": 13.2,
+      "label": "Session usage",
+      "percent": 13.3,
       "resetAt": "2026-08-24T14:00:00Z",
       "segments": [
         {
-          "model": "web fetch",
-          "requests": 1,
-          "color": "#76b900"
+          "model": "deepseek-v4-flash:0731",
+          "requests": 528
         },
         {
           "model": "web search",
-          "requests": 9,
-          "color": "#3b82f6"
+          "requests": 9
         },
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 526,
-          "color": "#4f46e5"
+          "model": "web fetch",
+          "requests": 1
         }
       ]
     },
     {
-      "label": "Weekly usage 13.1% used",
+      "label": "Weekly usage",
       "percent": 13.1,
       "resetAt": "2026-08-31T00:00:00Z",
       "segments": [
         {
-          "model": "web fetch",
-          "requests": 1,
-          "color": "#76b900"
+          "model": "deepseek-v4-flash:0731",
+          "requests": 2341
         },
         {
           "model": "web search",
-          "requests": 26,
-          "color": "#3b82f6"
+          "requests": 26
         },
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 2339,
-          "color": "#4f46e5"
+          "model": "web fetch",
+          "requests": 1
         },
         {
           "model": "deepseek-v4-flash:preview",
-          "requests": 1,
-          "color": "#4f46e5"
+          "requests": 1
         }
       ]
     }
   ],
   "weeklyModels": [
     {
-      "model": "web fetch",
-      "requests": 26,
-      "color": "#76b900"
+      "model": "deepseek-v4-flash:0731",
+      "requests": 2341
     },
     {
-      "model": "deepseek-v4-flash:0731",
-      "requests": 2339,
-      "color": "#4f46e5"
+      "model": "web search",
+      "requests": 26
+    },
+    {
+      "model": "web fetch",
+      "requests": 1
+    },
+    {
+      "model": "deepseek-v4-flash:preview",
+      "requests": 1
     }
-  ]
+  ],
+  "extraBalance": 0
 }
