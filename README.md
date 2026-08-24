@@ -2,7 +2,7 @@
 
 把 Ollama PRO 的用量公开成一个只读网页，分享给朋友看。**访客只能看到用量数字，永远接触不到你的 cookie / 邮箱 / 账号。**
 
-- 采集：GitHub Actions 每 15 分钟自动抓取一次（cookie 存在仓库 **Actions Secret**，加密存储）
+- 采集：GitHub Actions 每 5 分钟自动抓取一次（cookie 存在仓库 **Actions Secret**，加密存储）
 - 展示：GitHub Pages 静态页，数据落盘在 `data/usage.json`
 - 你本机：零运行、零部署
 
@@ -27,7 +27,7 @@ data/usage.json ──► GitHub Pages 静态站（访客只看这个）
 ├─ data/usage.json           # 用量快照（公开数据，定时更新）
 ├─ data/history.json         # 每日用量历史（封顶 60 条）
 ├─ scripts/fetch-usage.js    # 采集+清洗脚本（Actions 中运行）
-└─ .github/workflows/fetch.yml  # 每 15 分钟同步 + 手动触发
+└─ .github/workflows/fetch.yml  # 每 5 分钟同步 + 手动触发
 ```
 
 ## 部署步骤（约 5 分钟）
@@ -68,7 +68,7 @@ git push -u origin main
 https://<你的用户名>.github.io/<仓库名>/
 ```
 
-之后每 15 分钟自动更新。页面 60 秒自动刷新。
+之后每 5 分钟自动更新。页面 60 秒自动刷新。
 
 ## 更新 cookie / 手动刷新
 

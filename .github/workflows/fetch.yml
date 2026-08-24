@@ -2,8 +2,8 @@ name: sync-usage
 
 on:
   schedule:
-    # 每 15 分钟同步一次（GitHub 调度最小间隔 5 分钟，实际执行可能有少量延迟）
-    - cron: '*/15 * * * *'
+    # 每 5 分钟同步一次（GitHub 调度最低档；高负载时段可能延迟几分钟）
+    - cron: '*/5 * * * *'
   workflow_dispatch: # 也可以在 Actions 页面手动点「Run workflow」立即同步
 
 permissions:
