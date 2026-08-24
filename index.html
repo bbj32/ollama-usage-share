@@ -109,12 +109,17 @@ function fmtReset(iso) {
   if (!iso) return "未知";
   const t = new Date(iso).getTime();
   if (Number.isNaN(t)) return "未知";
+  const at = new Date(t);
+  const when = at.toLocaleDateString("zh-CN", { month: "numeric", day: "numeric" }) + " " +
+    at.toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit" });
   const diff = t - Date.now();
   if (diff <= 0) return "已重置";
   const h = Math.floor(diff / 3600000);
-  if (h < 1) return Math.floor(diff / 60000) + " 分钟后重置";
-  if (h < 24) return h + " 小时后重置";
-  return Math.floor(h / 24) + " 天 " + (h % 24) + " 小时后重置";
+  let rel;
+  if (h < 1) rel = Math.floor(diff / 60000) + " 分钟后重置";
+  else if (h < 24) rel = h + " 小时后重置";
+  else rel = Math.floor(h / 24) + " 天 " + (h % 24) + " 小时后重置";
+  return rel + "（" + when + "）";
 }
 
 function meterCard(m) {
