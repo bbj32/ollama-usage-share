@@ -1,67 +1,67 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-24T10:17:01.832Z",
+  "updatedAt": "2026-08-24T10:22:39.712Z",
   "meters": [
     {
-      "label": "Session usage",
-      "percent": 7.8,
+      "label": "Session usage 8.6% used",
+      "percent": 8.6,
       "resetAt": "2026-08-24T14:00:00Z",
       "segments": [
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 363
+          "model": "web fetch",
+          "requests": 1,
+          "color": "#76b900"
         },
         {
           "model": "web search",
-          "requests": 6
+          "requests": 9,
+          "color": "#3b82f6"
         },
         {
-          "model": "web fetch",
-          "requests": 1
+          "model": "deepseek-v4-flash:0731",
+          "requests": 406,
+          "color": "#4f46e5"
         }
       ]
     },
     {
-      "label": "Weekly usage",
-      "percent": 12.1,
+      "label": "Weekly usage 12.3% used",
+      "percent": 12.3,
       "resetAt": "2026-08-31T00:00:00Z",
       "segments": [
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 2176
+          "model": "web fetch",
+          "requests": 1,
+          "color": "#76b900"
         },
         {
           "model": "web search",
-          "requests": 23
+          "requests": 26,
+          "color": "#3b82f6"
         },
         {
-          "model": "web fetch",
-          "requests": 1
+          "model": "deepseek-v4-flash:0731",
+          "requests": 2219,
+          "color": "#4f46e5"
         },
         {
           "model": "deepseek-v4-flash:preview",
-          "requests": 1
+          "requests": 1,
+          "color": "#4f46e5"
         }
       ]
     }
   ],
   "weeklyModels": [
     {
-      "model": "deepseek-v4-flash:0731",
-      "requests": 2176
-    },
-    {
-      "model": "web search",
-      "requests": 23
-    },
-    {
       "model": "web fetch",
-      "requests": 1
+      "requests": 26,
+      "color": "#76b900"
     },
     {
-      "model": "deepseek-v4-flash:preview",
-      "requests": 1
+      "model": "deepseek-v4-flash:0731",
+      "requests": 2219,
+      "color": "#4f46e5"
     }
-  ],
-  "extraBalance": 0
+  ]
 }
