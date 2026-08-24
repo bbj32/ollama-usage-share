@@ -62,13 +62,6 @@
   .rows .row { display: flex; align-items: center; gap: 10px; font-size: 13px; }
   .rows .bar { flex: 1; margin: 0; height: 8px; }
   .rows .row .num { width: 64px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
-  .hist { display: flex; align-items: flex-end; gap: 4px; height: 90px; padding-top: 8px; }
-  .hist .col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
-  .hist .pair { display: flex; gap: 2px; align-items: flex-end; width: 100%; height: 100%; }
-  .hist .pair i { flex: 1; max-width: none; border-radius: 3px 3px 0 0; opacity: .9; }
-  .hist .col span { font-size: 9.5px; color: var(--muted); transform: rotate(-45deg); white-space: nowrap; }
-  .legend2 { font-size: 11px; color: var(--muted); font-weight: 400; margin-left: 8px; }
-  .legend2 i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin: 0 4px 0 8px; vertical-align: -1px; }
   .extra-note { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: 8px; }
   footer { margin-top: 28px; font-size: 11.5px; color: var(--muted); line-height: 1.7; text-align: center; }
   .err { color: var(--danger); }
@@ -92,11 +85,6 @@
   <section id="weeklySec" class="hide">
     <h3>本周各模型请求数</h3>
     <div class="rows" id="weekly"></div>
-  </section>
-
-  <section id="histSec" class="hide">
-    <h3>近 30 天用量<span class="legend2"><i style="background:var(--accent, #4f8ef7)"></i>会话<i style="background:var(--good)"></i>周</span></h3>
-    <div class="hist" id="hist"></div>
   </section>
 
   <footer>
@@ -175,28 +163,6 @@ function render(d) {
       `<div class="bar"><i style="width:${(w.requests / max) * 100}%;background:${w.color || "#4f8ef7"}"></i></div>` +
       `<span class="num">${fmtCount(w.requests)}</span></div>`).join("");
   } else ws.classList.add("hide");
-
-  loadHistory();
-}
-
-async function loadHistory() {
-  const hs = $("histSec");
-  try {
-    const r = await fetch("data/history.json?v=" + Date.now(), { cache: "no-store" });
-    if (!r.ok) throw 0;
-    const hist = await r.json();
-    if (!Array.isArray(hist) || !hist.length) { hs.classList.add("hide"); return; }
-    const last = hist.slice(-30);
-    const sess = last.map(h => h.session ?? 0);
-    const wk = last.map(h => h.weekly ?? 0);
-    const maxS = Math.max(...sess, 1), maxW = Math.max(...wk, 1);
-    hs.classList.remove("hide");
-    $("hist").innerHTML = last.map((h, i) =>
-      `<div class="col" title="${esc(h.date)} 会话 ${h.session ?? "—"}% · 周 ${h.weekly ?? "—"}%"><div class="pair">` +
-      `<i style="height:${Math.max(3, (sess[i] / maxS) * 100)}%;background:var(--accent, #4f8ef7)"></i>` +
-      `<i style="height:${Math.max(3, (wk[i] / maxW) * 100)}%;background:var(--good)"></i>` +
-      `</div><span>${i % 5 === 0 || i === last.length - 1 ? (h.date || "").slice(5) : ""}</span></div>`).join("");
-  } catch { hs.classList.add("hide"); }
 }
 
 async function refresh() {
