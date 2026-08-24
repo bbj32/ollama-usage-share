@@ -192,10 +192,10 @@ async function loadHistory() {
     const maxS = Math.max(...sess, 1), maxW = Math.max(...wk, 1);
     hs.classList.remove("hide");
     $("hist").innerHTML = last.map((h, i) =>
-      `<div class="col"><div class="pair">` +
+      `<div class="col" title="${esc(h.date)} 会话 ${h.session ?? "—"}% · 周 ${h.weekly ?? "—"}%"><div class="pair">` +
       `<i style="height:${Math.max(3, (sess[i] / maxS) * 100)}%;background:var(--accent, #4f8ef7)"></i>` +
       `<i style="height:${Math.max(3, (wk[i] / maxW) * 100)}%;background:var(--good)"></i>` +
-      `</div><span>${(h.date || "").slice(5)}</span></div>`).join("");
+      `</div><span>${i % 5 === 0 || i === last.length - 1 ? (h.date || "").slice(5) : ""}</span></div>`).join("");
   } catch { hs.classList.add("hide"); }
 }
 
