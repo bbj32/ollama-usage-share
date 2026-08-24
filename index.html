@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Ollama Usage 分享</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --card: #141b30;
+    --card2: #1a2340;
+    --line: #26304f;
+    --text: #e6eaf3;
+    --muted: #8b94ad;
+    --accent: #4f8ef7;
+    --good: #34d399;
+    --warn: #fbbf24;
+    --danger: #f87171;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: radial-gradient(1200px 600px at 70% -10%, #1c2a55 0%, var(--bg) 55%);
+    color: var(--text);
+    font-family: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: .5px; }
+  .badge {
+    font-size: 12px; padding: 3px 10px; border-radius: 999px;
+    background: rgba(79, 142, 247, .15); color: var(--accent, #8ab6ff);
+    border: 1px solid rgba(79, 142, 247, .35); text-transform: uppercase;
+  }
+  .updated { margin-left: auto; font-size: 12px; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: linear-gradient(180deg, var(--card2), var(--card));
+    border: 1px solid var(--line); border-radius: 16px; padding: 20px;
+  }
+  .card h2 { font-size: 14px; color: var(--muted); font-weight: 600; display: flex; justify-content: space-between; }
+  .card h2 .pct { font-size: 26px; color: var(--text); font-weight: 700; }
+  .bar {
+    margin: 14px 0 10px; height: 12px; border-radius: 999px;
+    background: #0d1226; overflow: hidden; display: flex;
+  }
+  .bar > i { display: block; height: 100%; min-width: 0; transition: width .8s ease; }
+  .meta { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+  .legend { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+  .legend .row { display: flex; align-items: center; gap: 8px; font-size: 12.5px; }
+  .legend .dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+  .legend .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .legend .num { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .pct-warn { color: var(--warn); } .pct-danger { color: var(--danger); } .pct-good { color: var(--good); }
+  section { margin-top: 20px; }
+  section h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; font-weight: 600; }
+  .rows { display: flex; flex-direction: column; gap: 8px; }
+  .rows .row { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+  .rows .bar { flex: 1; margin: 0; height: 8px; }
+  .rows .row .num { width: 64px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .hist { display: flex; align-items: flex-end; gap: 4px; height: 90px; padding-top: 8px; }
+  .hist .col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
+  .hist .col i { width: 100%; max-width: 26px; border-radius: 4px 4px 0 0; background: var(--accent, #4f8ef7); opacity: .9; }
+  .hist .col span { font-size: 9.5px; color: var(--muted); transform: rotate(-45deg); white-space: nowrap; }
+  footer { margin-top: 28px; font-size: 11.5px; color: var(--muted); line-height: 1.7; text-align: center; }
+  .err { color: var(--danger); }
+  .hide { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Ollama Usage</h1>
+    <span class="badge" id="plan">—</span>
+    <span class="updated" id="updated"></span>
+  </header>
+
+  <div class="grid" id="meters"></div>
+
+  <section id="weeklySec" class="hide">
+    <h3>本周各模型请求数</h3>
+    <div class="rows" id="weekly"></div>
+  </section>
+
+  <section id="histSec" class="hide">
+    <h3>近 14 天会话用量</h3>
+    <div class="hist" id="hist"></div>
+  </section>
+
+  <footer>
+    数据由 GitHub Actions 定时同步（每 15 分钟）· 本页仅公开用量数字，不含任何账号凭据<br>
+    <span id="footStatus"></span>
+  </footer>
+</div>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+
+function pctClass(p) { return p >= 80 ? "pct-danger" : p >= 60 ? "pct-warn" : "pct-good"; }
+
+function fmtCount(n) { return (n ?? 0).toLocaleString("zh-CN"); }
+
+function fmtReset(iso) {
+  if (!iso) return "未知";
+  const t = new Date(iso).getTime();
+  if (Number.isNaN(t)) return "未知";
+  const diff = t - Date.now();
+  if (diff <= 0) return "已重置";
+  const h = Math.floor(diff / 3600000);
+  if (h < 1) return Math.floor(diff / 60000) + " 分钟后重置";
+  if (h < 24) return h + " 小时后重置";
+  return Math.floor(h / 24) + " 天 " + (h % 24) + " 小时后重置";
+}
+
+function meterCard(m) {
+  const pct = m.percent;
+  const label = String(m.label || "").replace(/\s*[\d.]+%\s*used\s*$/i, "").trim() || "用量";
+  const segs = (m.segments || []).filter(s => s && s.requests > 0);
+  const div = document.createElement("div");
+  div.className = "card";
+  const segHtml = segs.length ? `<div class="legend">${segs.slice(0, 6).map(s =>
+    `<div class="row"><span class="dot" style="background:${s.color || "#4f8ef7"}"></span>` +
+    `<span class="name" title="${esc(s.model)}">${esc(s.model)}</span>` +
+    `<span class="num">${fmtCount(s.requests)} req</span></div>`).join("")}</div>` : "";
+  div.innerHTML =
+    `<h2><span>${esc(label)}</span><span class="pct ${pctClass(pct)}">${pct == null ? "—" : pct + "%"}</span></h2>` +
+    `<div class="bar">${segs.slice(0, 6).map(s =>
+      `<i style="width:${Math.max(s.requests > 0 ? 1 : 0, (s.requests / total(segs)) * 100)}%;background:${s.color || "#4f8ef7"}"></i>`).join("")}</div>` +
+    `<div class="meta"><span>${fmtReset(m.resetAt)}</span><span>${segs.length} 个模型</span></div>` + segHtml;
+  return div;
+}
+
+function total(segs) { return segs.reduce((a, s) => a + (s.requests || 0), 0) || 1; }
+
+function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+function render(d) {
+  $("plan").textContent = (d.plan || "—").toUpperCase();
+  $("updated").textContent = d.updatedAt ? "更新于 " + new Date(d.updatedAt).toLocaleString("zh-CN") : "";
+  const grid = $("meters");
+  grid.innerHTML = "";
+  (d.meters || []).forEach(m => grid.appendChild(meterCard(m)));
+
+  const weekly = (d.weeklyModels || []).filter(w => w && w.requests > 0);
+  const ws = $("weeklySec");
+  if (weekly.length) {
+    ws.classList.remove("hide");
+    const max = Math.max(...weekly.map(w => w.requests));
+    $("weekly").innerHTML = weekly.slice(0, 10).map(w =>
+      `<div class="row"><span class="dot" style="background:${w.color || "#4f8ef7"}"></span>` +
+      `<span class="name" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%" title="${esc(w.model)}">${esc(w.model)}</span>` +
+      `<div class="bar"><i style="width:${(w.requests / max) * 100}%;background:${w.color || "#4f8ef7"}"></i></div>` +
+      `<span class="num">${fmtCount(w.requests)}</span></div>`).join("");
+  } else ws.classList.add("hide");
+
+  loadHistory();
+}
+
+async function loadHistory() {
+  const hs = $("histSec");
+  try {
+    const r = await fetch("data/history.json?v=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw 0;
+    const hist = await r.json();
+    if (!Array.isArray(hist) || !hist.length) { hs.classList.add("hide"); return; }
+    const last = hist.slice(-14);
+    const vals = last.map(h => h.session ?? h.weekly ?? 0);
+    const max = Math.max(...vals, 1);
+    hs.classList.remove("hide");
+    $("hist").innerHTML = last.map((h, i) =>
+      `<div class="col"><i style="height:${Math.max(4, (vals[i] / max) * 100)}%"></i><span>${(h.date || "").slice(5)}</span></div>`).join("");
+  } catch { hs.classList.add("hide"); }
+}
+
+async function refresh() {
+  const status = $("footStatus");
+  status.textContent = "正在同步…";
+  try {
+    const r = await fetch("data/usage.json?v=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const d = await r.json();
+    render(d);
+    status.textContent = "✓ 同步成功";
+  } catch (e) {
+    status.textContent = "加载失败（" + e.message + "），页面将于 60 秒后重试";
+  }
+}
+refresh();
+setInterval(refresh, 60000);
+</script>
+</body>
+</html>

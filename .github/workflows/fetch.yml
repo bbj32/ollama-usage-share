@@ -1,0 +1,41 @@
+name: sync-usage
+
+on:
+  schedule:
+    # 每 15 分钟同步一次（GitHub 调度最小间隔 5 分钟，实际执行可能有少量延迟）
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # 也可以在 Actions 页面手动点「Run workflow」立即同步
+
+permissions:
+  contents: write
+
+concurrency:
+  group: usage-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch & sanitize usage
+        env:
+          OLLAMA_COOKIE: ${{ secrets.OLLAMA_COOKIE }}
+        run: node scripts/fetch-usage.js
+
+      - name: Commit & push
+        run: |
+          git config user.name "usage-sync[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/usage.json data/history.json
+          if git diff --cached --quiet; then
+            echo "无数据变化，跳过提交"
+          else
+            git commit -m "sync: update usage snapshot [skip ci]"
+            git push
+          fi
