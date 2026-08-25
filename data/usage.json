@@ -1,63 +1,67 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-25T13:55:01.485Z",
+  "updatedAt": "2026-08-25T13:56:32.239Z",
   "meters": [
     {
-      "label": "Session usage",
+      "label": "Session usage 12.5% used",
       "percent": 12.5,
       "resetAt": "2026-08-25T15:00:00Z",
       "segments": [
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 252
+          "model": "web search",
+          "requests": 5,
+          "color": "#3b82f6"
         },
         {
-          "model": "web search",
-          "requests": 5
+          "model": "deepseek-v4-flash:0731",
+          "requests": 252,
+          "color": "#4f46e5"
         }
       ]
     },
     {
-      "label": "Weekly usage",
+      "label": "Weekly usage 24.7% used",
       "percent": 24.7,
       "resetAt": "2026-08-31T00:00:00Z",
       "segments": [
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 4063
+          "model": "web fetch",
+          "requests": 1,
+          "color": "#76b900"
         },
         {
           "model": "web search",
-          "requests": 57
+          "requests": 57,
+          "color": "#3b82f6"
         },
         {
-          "model": "web fetch",
-          "requests": 1
+          "model": "deepseek-v4-flash:0731",
+          "requests": 4063,
+          "color": "#4f46e5"
         },
         {
           "model": "deepseek-v4-flash:preview",
-          "requests": 4
+          "requests": 4,
+          "color": "#4f46e5"
         }
       ]
     }
   ],
   "weeklyModels": [
     {
-      "model": "deepseek-v4-flash:0731",
-      "requests": 4063
-    },
-    {
-      "model": "web search",
-      "requests": 57
-    },
-    {
       "model": "web fetch",
-      "requests": 1
+      "requests": 57,
+      "color": "#76b900"
+    },
+    {
+      "model": "deepseek-v4-flash:0731",
+      "requests": 4063,
+      "color": "#4f46e5"
     },
     {
       "model": "deepseek-v4-flash:preview",
-      "requests": 4
+      "requests": 4,
+      "color": "#4f46e5"
     }
-  ],
-  "extraBalance": 0
+  ]
 }
