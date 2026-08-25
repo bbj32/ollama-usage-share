@@ -1,7 +1,12 @@
 [
   {
     "date": "2026-08-24",
+    "session": 1,
+    "weekly": 20.8
+  },
+  {
+    "date": "2026-08-25",
     "session": 0,
-    "weekly": 20.6
+    "weekly": 20.8
   }
 ]
