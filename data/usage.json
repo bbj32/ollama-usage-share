@@ -1,67 +1,63 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-26T13:52:30.419Z",
+  "updatedAt": "2026-08-26T13:54:01.478Z",
   "meters": [
     {
-      "label": "Session usage 8.2% used",
-      "percent": 8.2,
+      "label": "Session usage",
+      "percent": 8.4,
       "resetAt": "2026-08-26T16:00:00Z",
       "segments": [
         {
-          "model": "web search",
-          "requests": 43,
-          "color": "#3b82f6"
+          "model": "deepseek-v4-flash:0731",
+          "requests": 222
         },
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 222,
-          "color": "#4f46e5"
+          "model": "web search",
+          "requests": 47
         }
       ]
     },
     {
-      "label": "Weekly usage 53.5% used",
-      "percent": 53.5,
+      "label": "Weekly usage",
+      "percent": 53.6,
       "resetAt": "2026-08-31T00:00:00Z",
       "segments": [
         {
-          "model": "web fetch",
-          "requests": 1,
-          "color": "#76b900"
+          "model": "deepseek-v4-flash:0731",
+          "requests": 8655
         },
         {
           "model": "web search",
-          "requests": 123,
-          "color": "#3b82f6"
+          "requests": 127
         },
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 8655,
-          "color": "#4f46e5"
+          "model": "web fetch",
+          "requests": 1
         },
         {
           "model": "deepseek-v4-flash:preview",
-          "requests": 4,
-          "color": "#4f46e5"
+          "requests": 4
         }
       ]
     }
   ],
   "weeklyModels": [
     {
-      "model": "web fetch",
-      "requests": 123,
-      "color": "#76b900"
+      "model": "deepseek-v4-flash:0731",
+      "requests": 8655
     },
     {
-      "model": "deepseek-v4-flash:0731",
-      "requests": 8655,
-      "color": "#4f46e5"
+      "model": "web search",
+      "requests": 127
+    },
+    {
+      "model": "web fetch",
+      "requests": 1
     },
     {
       "model": "deepseek-v4-flash:preview",
-      "requests": 4,
-      "color": "#4f46e5"
+      "requests": 4
     }
-  ]
+  ],
+  "extraBalance": 0
 }
