@@ -1,17 +1,12 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-26T00:36:01.499Z",
+  "updatedAt": "2026-08-26T01:00:01.511Z",
   "meters": [
     {
       "label": "Session usage",
-      "percent": 31.7,
-      "resetAt": "2026-08-26T01:00:00Z",
-      "segments": [
-        {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 800
-        }
-      ]
+      "percent": 0,
+      "resetAt": "2026-08-26T06:00:00Z",
+      "segments": []
     },
     {
       "label": "Weekly usage",
