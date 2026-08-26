@@ -1,67 +1,63 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-26T07:14:05.941Z",
+  "updatedAt": "2026-08-26T07:19:01.485Z",
   "meters": [
     {
-      "label": "Session usage 14% used",
-      "percent": 14,
+      "label": "Session usage",
+      "percent": 15.3,
       "resetAt": "2026-08-26T11:00:00Z",
       "segments": [
         {
-          "model": "web search",
-          "requests": 3,
-          "color": "#3b82f6"
+          "model": "deepseek-v4-flash:0731",
+          "requests": 632
         },
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 572,
-          "color": "#4f46e5"
+          "model": "web search",
+          "requests": 3
         }
       ]
     },
     {
-      "label": "Weekly usage 48.8% used",
-      "percent": 48.8,
+      "label": "Weekly usage",
+      "percent": 49,
       "resetAt": "2026-08-31T00:00:00Z",
       "segments": [
         {
-          "model": "web fetch",
-          "requests": 1,
-          "color": "#76b900"
+          "model": "deepseek-v4-flash:0731",
+          "requests": 7702
         },
         {
           "model": "web search",
-          "requests": 77,
-          "color": "#3b82f6"
+          "requests": 77
         },
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 7642,
-          "color": "#4f46e5"
+          "model": "web fetch",
+          "requests": 1
         },
         {
           "model": "deepseek-v4-flash:preview",
-          "requests": 4,
-          "color": "#4f46e5"
+          "requests": 4
         }
       ]
     }
   ],
   "weeklyModels": [
     {
-      "model": "web fetch",
-      "requests": 77,
-      "color": "#76b900"
+      "model": "deepseek-v4-flash:0731",
+      "requests": 7702
     },
     {
-      "model": "deepseek-v4-flash:0731",
-      "requests": 7642,
-      "color": "#4f46e5"
+      "model": "web search",
+      "requests": 77
+    },
+    {
+      "model": "web fetch",
+      "requests": 1
     },
     {
       "model": "deepseek-v4-flash:preview",
-      "requests": 4,
-      "color": "#4f46e5"
+      "requests": 4
     }
-  ]
+  ],
+  "extraBalance": 0
 }
