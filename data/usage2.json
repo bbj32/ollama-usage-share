@@ -1,0 +1,20 @@
+{
+  "plan": "pro",
+  "updatedAt": "2026-08-27T09:20:01.994Z",
+  "meters": [
+    {
+      "label": "Session usage",
+      "percent": 0,
+      "resetAt": null,
+      "segments": []
+    },
+    {
+      "label": "Weekly usage",
+      "percent": 0,
+      "resetAt": null,
+      "segments": []
+    }
+  ],
+  "weeklyModels": [],
+  "account": "2"
+}
