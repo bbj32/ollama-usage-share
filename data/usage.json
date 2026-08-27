@@ -1,87 +1,97 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-27T05:29:01.489Z",
+  "updatedAt": "2026-08-27T05:58:10.911Z",
   "meters": [
     {
-      "label": "Session usage",
+      "label": "Session usage 20.7% used",
       "percent": 20.7,
       "resetAt": "2026-08-27T07:00:00Z",
       "segments": [
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 441
+          "model": "gemma4:31b",
+          "requests": 15,
+          "color": "#22c55e"
         },
         {
           "model": "glm-5.3-flash",
-          "requests": 34
+          "requests": 34,
+          "color": "#3b82f6"
         },
         {
           "model": "web search",
-          "requests": 29
+          "requests": 29,
+          "color": "#3b82f6"
         },
         {
-          "model": "gemma4:31b",
-          "requests": 15
+          "model": "deepseek-v4-flash:0731",
+          "requests": 441,
+          "color": "#4f46e5"
         }
       ]
     },
     {
-      "label": "Weekly usage",
+      "label": "Weekly usage 60.1% used",
       "percent": 60.1,
       "resetAt": "2026-08-31T00:00:00Z",
       "segments": [
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 9481
-        },
-        {
-          "model": "web search",
-          "requests": 204
-        },
-        {
-          "model": "glm-5.3-flash",
-          "requests": 34
+          "model": "web fetch",
+          "requests": 1,
+          "color": "#76b900"
         },
         {
           "model": "gemma4:31b",
-          "requests": 15
+          "requests": 15,
+          "color": "#22c55e"
         },
         {
-          "model": "web fetch",
-          "requests": 1
+          "model": "web search",
+          "requests": 204,
+          "color": "#3b82f6"
+        },
+        {
+          "model": "glm-5.3-flash",
+          "requests": 34,
+          "color": "#3b82f6"
+        },
+        {
+          "model": "deepseek-v4-flash:0731",
+          "requests": 9481,
+          "color": "#4f46e5"
         },
         {
           "model": "deepseek-v4-flash:preview",
-          "requests": 4
+          "requests": 4,
+          "color": "#4f46e5"
         }
       ]
     }
   ],
   "weeklyModels": [
     {
-      "model": "deepseek-v4-flash:0731",
-      "requests": 9481
+      "model": "web fetch",
+      "requests": 15,
+      "color": "#76b900"
     },
     {
       "model": "web search",
-      "requests": 204
+      "requests": 204,
+      "color": "#3b82f6"
     },
     {
       "model": "glm-5.3-flash",
-      "requests": 34
+      "requests": 34,
+      "color": "#3b82f6"
     },
     {
-      "model": "gemma4:31b",
-      "requests": 15
-    },
-    {
-      "model": "web fetch",
-      "requests": 1
+      "model": "deepseek-v4-flash:0731",
+      "requests": 9481,
+      "color": "#4f46e5"
     },
     {
       "model": "deepseek-v4-flash:preview",
-      "requests": 4
+      "requests": 4,
+      "color": "#4f46e5"
     }
-  ],
-  "extraBalance": 0
+  ]
 }
