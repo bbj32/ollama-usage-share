@@ -44,6 +44,18 @@
     box-shadow: 4px 4px 8px var(--dark), -4px -4px 8px var(--light);
   }
   .updated { margin-left: auto; font-size: 12px; color: var(--muted); }
+  .tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab {
+    font-size: 13px; font-weight: 600; padding: 8px 20px; border-radius: 999px; cursor: pointer;
+    background: var(--bg); color: var(--muted); border: none; font-family: inherit;
+    box-shadow: 4px 4px 8px var(--dark), -4px -4px 8px var(--light);
+    transition: box-shadow .3s ease-in-out, color .3s ease-in-out;
+  }
+  .tab:hover { box-shadow: 2px 2px 4px var(--dark), -2px -2px 4px var(--light); }
+  .tab.active {
+    color: var(--accent-text);
+    box-shadow: inset 4px 4px 8px var(--dark), inset -4px -4px 8px var(--light);
+  }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
   .card {
@@ -98,6 +110,11 @@
 
   <div class="grid" id="meters"></div>
 
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-acc="1">账号 1 · Ollama Pro</button>
+    <button class="tab" data-acc="2">账号 2 · Ollama Pro 2</button>
+  </div>
+
   <section id="extraSec" class="hide">
     <h3>额外用量余额 <span class="pct pct-good" style="font-size:16px">$<span id="extraAmt">0</span></span><span class="extra-note">套餐用量用完后自动按量补充</span></h3>
   </section>
@@ -116,6 +133,14 @@
 <script>
 "use strict";
 const $ = (id) => document.getElementById(id);
+
+let account = 1;
+const tabs = document.querySelectorAll(".tab");
+tabs.forEach((t) => t.addEventListener("click", () => {
+  account = Number(t.dataset.acc) || 1;
+  tabs.forEach((x) => x.classList.toggle("active", x === t));
+  refresh();
+}));
 
 function pctClass(p) { return p >= 80 ? "pct-danger" : p >= 60 ? "pct-warn" : "pct-good"; }
 
@@ -186,7 +211,7 @@ async function refresh() {
   const status = $("footStatus");
   status.textContent = "正在同步…";
   try {
-    const r = await fetch("data/usage.json?v=" + Date.now(), { cache: "no-store" });
+    const r = await fetch((account === 2 ? "data/usage2.json" : "data/usage.json") + "?v=" + Date.now(), { cache: "no-store" });
     if (!r.ok) throw new Error("HTTP " + r.status);
     const d = await r.json();
     render(d);

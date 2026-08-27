@@ -13,17 +13,18 @@
 
 ```
 Cloudflare Worker（每分钟 cron）
-  OLLAMA_API_KEY（主）/ OLLAMA_COOKIE（备用）/ GH_TOKEN（Worker Secret，加密存储）
+  OLLAMA_API_KEY（账号 1 主）/ OLLAMA2_API_KEY（账号 2 主）/ OLLAMA_COOKIE（账号 1 备用）/ GH_TOKEN（Worker Secret，加密存储）
     ↓ GET api.ollama.com/api/usage（JSON 接口，usage×100=页面百分比；失败回退 HTML 解析）
     ↓ 白名单清洗（只保留 plan/百分比/各模型请求数；不含任何凭据）
-    ↓ 写入 Cloudflare D1（usage / history / status）
-    ├─→ GET /api/usage.json ──→ 海外访客（1 分钟新鲜度）
-    └─→ 用量数字变化时（≥6 分钟节流，Git Data API 单 commit 双文件）
-          → 提交 data/usage.json + data/history.json 到本仓库
+    ↓ 写入 Cloudflare D1（账号 1：usage / history / status；账号 2：usage2 / history2 / status2）
+    ├─→ GET /api/usage.json（账号 1）/ /api/usage2.json（账号 2）──→ 海外访客（1 分钟新鲜度）
+    └─→ 任一账号用量数字变化时（≥6 分钟节流，Git Data API 单 commit 四文件）
+          → 提交 data/usage.json + data/history.json + data/usage2.json + data/history2.json 到本仓库
             → GitHub Pages 自动重建 → 国内访客（~6-7 分钟新鲜度）
 ```
 
-- Ollama API 密钥优先（作用域窄、可在 ollama.com/settings/keys 随时吊销）；cookie 仅作备用回退与重置时间富化
+- 页面顶部「账号 1 · Ollama Pro / 账号 2 · Ollama Pro 2」标签切换查看两个账号
+- Ollama API 密钥优先（作用域窄、可在 ollama.com/settings/keys 随时吊销）；cookie 仅作账号 1 备用回退与重置时间富化
 - GitHub 写 token（GH_TOKEN）只在 Cloudflare Secret
 - 公开仓库/页面里只有：页面代码 + 清洗后的数字（已扫描验证：无邮箱、账号、cookie、密钥）
 - 采集失败时页面顶部显示红色横幅（如密钥失效），数据保留上次成功快照
