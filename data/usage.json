@@ -1,87 +1,80 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-28T13:12:53.125Z",
+  "updatedAt": "2026-08-28T13:16:01.499Z",
   "meters": [
     {
-      "label": "Session usage 1.9% used",
+      "label": "Session usage",
       "percent": 1.9,
       "resetAt": "2026-08-28T18:00:00Z",
       "segments": [
         {
-          "model": "web search",
-          "requests": 3,
-          "color": "#3b82f6"
+          "model": "deepseek-v4-flash:0731",
+          "requests": 93
         },
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 89,
-          "color": "#4f46e5"
+          "model": "web search",
+          "requests": 3
         }
       ]
     },
     {
-      "label": "Weekly usage 92.1% used",
+      "label": "Weekly usage",
       "percent": 92.1,
       "resetAt": "2026-08-31T00:00:00Z",
       "segments": [
         {
-          "model": "web fetch",
-          "requests": 1,
-          "color": "#76b900"
-        },
-        {
-          "model": "gemma4:31b",
-          "requests": 15,
-          "color": "#22c55e"
+          "model": "deepseek-v4-flash:0731",
+          "requests": 11722
         },
         {
           "model": "glm-5.3-flash",
-          "requests": 1052,
-          "color": "#3b82f6"
+          "requests": 1052
         },
         {
           "model": "web search",
-          "requests": 308,
-          "color": "#3b82f6"
+          "requests": 308
         },
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 11718,
-          "color": "#4f46e5"
+          "model": "gemma4:31b",
+          "requests": 15
+        },
+        {
+          "model": "web fetch",
+          "requests": 1
         },
         {
           "model": "deepseek-v4-flash:preview",
-          "requests": 4,
-          "color": "#4f46e5"
+          "requests": 4
         }
       ]
     }
   ],
   "weeklyModels": [
     {
-      "model": "web fetch",
-      "requests": 15,
-      "color": "#76b900"
+      "model": "deepseek-v4-flash:0731",
+      "requests": 11722
     },
     {
       "model": "glm-5.3-flash",
-      "requests": 1052,
-      "color": "#3b82f6"
+      "requests": 1052
     },
     {
       "model": "web search",
-      "requests": 308,
-      "color": "#3b82f6"
+      "requests": 308
     },
     {
-      "model": "deepseek-v4-flash:0731",
-      "requests": 11718,
-      "color": "#4f46e5"
+      "model": "gemma4:31b",
+      "requests": 15
+    },
+    {
+      "model": "web fetch",
+      "requests": 1
     },
     {
       "model": "deepseek-v4-flash:preview",
-      "requests": 4,
-      "color": "#4f46e5"
+      "requests": 4
     }
-  ]
+  ],
+  "extraBalance": 0,
+  "account": "1"
 }
