@@ -1,82 +1,76 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-28T01:29:53.908Z",
+  "updatedAt": "2026-08-28T01:31:01.472Z",
   "meters": [
     {
-      "label": "Session usage 7.2% used",
-      "percent": 7.2,
+      "label": "Session usage",
+      "percent": 7.5,
       "resetAt": "2026-08-28T03:00:00Z",
       "segments": [
         {
           "model": "deepseek-v4-flash:0731",
-          "requests": 139,
-          "color": "#4f46e5"
+          "requests": 144
         }
       ]
     },
     {
-      "label": "Weekly usage 77.6% used",
+      "label": "Weekly usage",
       "percent": 77.6,
       "resetAt": "2026-08-31T00:00:00Z",
       "segments": [
         {
-          "model": "web fetch",
-          "requests": 1,
-          "color": "#76b900"
-        },
-        {
-          "model": "gemma4:31b",
-          "requests": 15,
-          "color": "#22c55e"
+          "model": "deepseek-v4-flash:0731",
+          "requests": 10593
         },
         {
           "model": "glm-5.3-flash",
-          "requests": 511,
-          "color": "#3b82f6"
+          "requests": 511
         },
         {
           "model": "web search",
-          "requests": 275,
-          "color": "#3b82f6"
+          "requests": 275
         },
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 10588,
-          "color": "#4f46e5"
+          "model": "gemma4:31b",
+          "requests": 15
+        },
+        {
+          "model": "web fetch",
+          "requests": 1
         },
         {
           "model": "deepseek-v4-flash:preview",
-          "requests": 4,
-          "color": "#4f46e5"
+          "requests": 4
         }
       ]
     }
   ],
   "weeklyModels": [
     {
-      "model": "web fetch",
-      "requests": 15,
-      "color": "#76b900"
+      "model": "deepseek-v4-flash:0731",
+      "requests": 10593
     },
     {
       "model": "glm-5.3-flash",
-      "requests": 511,
-      "color": "#3b82f6"
+      "requests": 511
     },
     {
       "model": "web search",
-      "requests": 275,
-      "color": "#3b82f6"
+      "requests": 275
     },
     {
-      "model": "deepseek-v4-flash:0731",
-      "requests": 10588,
-      "color": "#4f46e5"
+      "model": "gemma4:31b",
+      "requests": 15
+    },
+    {
+      "model": "web fetch",
+      "requests": 1
     },
     {
       "model": "deepseek-v4-flash:preview",
-      "requests": 4,
-      "color": "#4f46e5"
+      "requests": 4
     }
-  ]
+  ],
+  "extraBalance": 0,
+  "account": "1"
 }
