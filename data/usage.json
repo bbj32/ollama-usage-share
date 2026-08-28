@@ -1,10 +1,10 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-28T09:10:01.591Z",
+  "updatedAt": "2026-08-28T09:17:01.481Z",
   "meters": [
     {
       "label": "Session usage",
-      "percent": 0.9,
+      "percent": 1.1,
       "resetAt": "2026-08-28T13:00:00Z",
       "segments": [
         {
@@ -13,7 +13,7 @@
         },
         {
           "model": "glm-5.3-flash",
-          "requests": 8
+          "requests": 18
         }
       ]
     },
@@ -28,7 +28,7 @@
         },
         {
           "model": "glm-5.3-flash",
-          "requests": 519
+          "requests": 529
         },
         {
           "model": "web search",
@@ -56,7 +56,7 @@
     },
     {
       "model": "glm-5.3-flash",
-      "requests": 519
+      "requests": 529
     },
     {
       "model": "web search",
