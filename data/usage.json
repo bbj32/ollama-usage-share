@@ -1,15 +1,15 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-31T15:49:42.069Z",
+  "updatedAt": "2026-08-31T15:55:42.092Z",
   "meters": [
     {
       "label": "Session usage",
-      "percent": 26.6,
+      "percent": 26.9,
       "resetAt": "2026-08-31T16:00:00Z",
       "segments": [
         {
           "model": "deepseek-v4-flash:0731",
-          "requests": 756
+          "requests": 772
         },
         {
           "model": "glm-5.3-flash",
@@ -19,12 +19,12 @@
     },
     {
       "label": "Weekly usage",
-      "percent": 7.8,
+      "percent": 7.9,
       "resetAt": "2026-09-07T00:00:00Z",
       "segments": [
         {
           "model": "deepseek-v4-flash:0731",
-          "requests": 1434
+          "requests": 1450
         },
         {
           "model": "glm-5.3-flash",
@@ -36,7 +36,7 @@
   "weeklyModels": [
     {
       "model": "deepseek-v4-flash:0731",
-      "requests": 1434
+      "requests": 1450
     },
     {
       "model": "glm-5.3-flash",
