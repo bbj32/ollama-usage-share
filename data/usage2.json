@@ -1,6 +1,6 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-08-31T16:46:44.116Z",
+  "updatedAt": "2026-08-31T16:53:44.731Z",
   "meters": [
     {
       "label": "Session usage",
@@ -17,13 +17,13 @@
         },
         {
           "model": "web fetch",
-          "requests": 3
+          "requests": 6
         }
       ]
     },
     {
       "label": "Weekly usage",
-      "percent": 2.1,
+      "percent": 2.2,
       "resetAt": "2026-09-07T00:00:00Z",
       "segments": [
         {
@@ -40,7 +40,7 @@
         },
         {
           "model": "web fetch",
-          "requests": 3
+          "requests": 6
         }
       ]
     }
@@ -60,7 +60,7 @@
     },
     {
       "model": "web fetch",
-      "requests": 3
+      "requests": 6
     }
   ],
   "extraBalance": 0,
