@@ -1,64 +1,67 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-03T04:37:20.353Z",
+  "updatedAt": "2026-09-03T04:40:48.673Z",
   "meters": [
     {
-      "label": "Session usage",
-      "percent": 7.7,
+      "label": "Session usage 8.9% used",
+      "percent": 8.9,
       "resetAt": "2026-09-03T09:00:00Z",
       "segments": [
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 285
+          "model": "web search",
+          "requests": 4,
+          "color": "#3b82f6"
         },
         {
-          "model": "web search",
-          "requests": 4
+          "model": "deepseek-v4-flash:0731",
+          "requests": 337,
+          "color": "#4f46e5"
         }
       ]
     },
     {
-      "label": "Weekly usage",
-      "percent": 18.1,
+      "label": "Weekly usage 18.3% used",
+      "percent": 18.3,
       "resetAt": "2026-09-07T00:00:00Z",
       "segments": [
         {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 3318
-        },
-        {
           "model": "web search",
-          "requests": 82
+          "requests": 82,
+          "color": "#3b82f6"
         },
         {
           "model": "glm-5.3-flash",
-          "requests": 44
+          "requests": 44,
+          "color": "#3b82f6"
         },
         {
           "model": "glm-5.3",
-          "requests": 1
+          "requests": 1,
+          "color": "#3b82f6"
+        },
+        {
+          "model": "deepseek-v4-flash:0731",
+          "requests": 3370,
+          "color": "#4f46e5"
         }
       ]
     }
   ],
   "weeklyModels": [
     {
-      "model": "deepseek-v4-flash:0731",
-      "requests": 3318
-    },
-    {
       "model": "web search",
-      "requests": 82
+      "requests": 82,
+      "color": "#3b82f6"
     },
     {
       "model": "glm-5.3-flash",
-      "requests": 44
+      "requests": 44,
+      "color": "#3b82f6"
     },
     {
       "model": "glm-5.3",
-      "requests": 1
+      "requests": 3370,
+      "color": "#3b82f6"
     }
-  ],
-  "extraBalance": 0,
-  "account": "1"
+  ]
 }
