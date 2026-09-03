@@ -1,15 +1,23 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-03T10:52:20.200Z",
+  "updatedAt": "2026-09-03T12:49:00.232Z",
   "meters": [
     {
       "label": "Session usage",
-      "percent": 1.8,
+      "percent": 19.2,
       "resetAt": "2026-09-03T14:00:00Z",
       "segments": [
         {
           "model": "deepseek-v4-flash:0731",
-          "requests": 29
+          "requests": 495
+        },
+        {
+          "model": "web search",
+          "requests": 26
+        },
+        {
+          "model": "glm-5.3",
+          "requests": 2
         },
         {
           "model": "kimi-k3",
@@ -17,7 +25,7 @@
         },
         {
           "model": "glm-5.3-flash",
-          "requests": 1
+          "requests": 3
         },
         {
           "model": "kimi-k2.7-code",
@@ -27,27 +35,27 @@
     },
     {
       "label": "Weekly usage",
-      "percent": 28.2,
+      "percent": 31.3,
       "resetAt": "2026-09-07T00:00:00Z",
       "segments": [
         {
           "model": "deepseek-v4-flash:0731",
-          "requests": 4403
+          "requests": 4869
         },
         {
           "model": "web search",
-          "requests": 95
+          "requests": 121
         },
         {
           "model": "glm-5.3-flash",
-          "requests": 45
-        },
-        {
-          "model": "kimi-k3",
-          "requests": 1
+          "requests": 47
         },
         {
           "model": "glm-5.3",
+          "requests": 3
+        },
+        {
+          "model": "kimi-k3",
           "requests": 1
         },
         {
@@ -60,22 +68,22 @@
   "weeklyModels": [
     {
       "model": "deepseek-v4-flash:0731",
-      "requests": 4403
+      "requests": 4869
     },
     {
       "model": "web search",
-      "requests": 95
+      "requests": 121
     },
     {
       "model": "glm-5.3-flash",
-      "requests": 45
-    },
-    {
-      "model": "kimi-k3",
-      "requests": 1
+      "requests": 47
     },
     {
       "model": "glm-5.3",
+      "requests": 3
+    },
+    {
+      "model": "kimi-k3",
       "requests": 1
     },
     {
