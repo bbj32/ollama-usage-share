@@ -1,11 +1,11 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-04T14:21:52.848Z",
+  "updatedAt": "2026-09-04T17:39:42.548Z",
   "meters": [
     {
       "label": "Session usage 0% used",
       "percent": 0,
-      "resetAt": "2026-09-04T15:00:00Z",
+      "resetAt": "2026-09-04T20:00:00Z",
       "segments": []
     },
     {
