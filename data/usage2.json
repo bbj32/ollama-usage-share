@@ -1,25 +1,12 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-06T14:04:55.099Z",
+  "updatedAt": "2026-09-06T17:00:59.244Z",
   "meters": [
     {
       "label": "Session usage",
-      "percent": 6.1,
-      "resetAt": "2026-09-06T17:00:00Z",
-      "segments": [
-        {
-          "model": "glm-5.3-flash",
-          "requests": 68
-        },
-        {
-          "model": "web search",
-          "requests": 16
-        },
-        {
-          "model": "web fetch",
-          "requests": 1
-        }
-      ]
+      "percent": 0,
+      "resetAt": "2026-09-06T22:00:00Z",
+      "segments": []
     },
     {
       "label": "Weekly usage",
