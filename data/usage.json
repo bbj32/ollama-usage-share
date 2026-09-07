@@ -1,19 +1,21 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-07T00:54:07.844Z",
+  "updatedAt": "2026-09-07T02:21:52.324Z",
   "meters": [
     {
-      "label": "Session usage 0% used",
+      "label": "Session usage",
       "percent": 0,
       "resetAt": "2026-09-07T03:00:00Z",
       "segments": []
     },
     {
-      "label": "Weekly usage 0% used",
+      "label": "Weekly usage",
       "percent": 0,
       "resetAt": "2026-09-14T00:00:00Z",
       "segments": []
     }
   ],
-  "weeklyModels": []
+  "weeklyModels": [],
+  "extraBalance": 0,
+  "account": "1"
 }
