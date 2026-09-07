@@ -1,42 +1,48 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-07T07:20:53.956Z",
+  "updatedAt": "2026-09-07T10:25:17.006Z",
   "meters": [
     {
-      "label": "Session usage",
-      "percent": 11.3,
-      "resetAt": "2026-09-07T08:00:00Z",
+      "label": "Session usage 20.6% used",
+      "percent": 20.6,
+      "resetAt": "2026-09-07T13:00:00Z",
       "segments": [
         {
           "model": "glm-5.3-flash",
-          "requests": 46
-        },
-        {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 8
+          "requests": 27,
+          "color": "#3b82f6"
         },
         {
           "model": "web search",
-          "requests": 4
+          "requests": 8,
+          "color": "#3b82f6"
+        },
+        {
+          "model": "deepseek-v4-flash:0731",
+          "requests": 225,
+          "color": "#4f46e5"
         }
       ]
     },
     {
-      "label": "Weekly usage",
-      "percent": 2,
+      "label": "Weekly usage 6.3% used",
+      "percent": 6.3,
       "resetAt": "2026-09-14T00:00:00Z",
       "segments": [
         {
           "model": "glm-5.3-flash",
-          "requests": 46
-        },
-        {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 8
+          "requests": 77,
+          "color": "#3b82f6"
         },
         {
           "model": "web search",
-          "requests": 4
+          "requests": 12,
+          "color": "#3b82f6"
+        },
+        {
+          "model": "deepseek-v4-flash:0731",
+          "requests": 267,
+          "color": "#4f46e5"
         }
       ]
     }
@@ -44,17 +50,18 @@
   "weeklyModels": [
     {
       "model": "glm-5.3-flash",
-      "requests": 46
-    },
-    {
-      "model": "deepseek-v4-flash:0731",
-      "requests": 8
+      "requests": 77,
+      "color": "#3b82f6"
     },
     {
       "model": "web search",
-      "requests": 4
+      "requests": 12,
+      "color": "#3b82f6"
+    },
+    {
+      "model": "deepseek-v4-flash:0731",
+      "requests": 267,
+      "color": "#4f46e5"
     }
-  ],
-  "extraBalance": 0,
-  "account": "1"
+  ]
 }
