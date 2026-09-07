@@ -1,26 +1,26 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-07T02:21:54.179Z",
+  "updatedAt": "2026-09-07T02:28:55.123Z",
   "meters": [
     {
       "label": "Session usage",
-      "percent": 0,
+      "percent": 0.4,
       "resetAt": "2026-09-07T03:00:00Z",
       "segments": [
         {
           "model": "glm-5.3-flash",
-          "requests": 2
+          "requests": 10
         }
       ]
     },
     {
       "label": "Weekly usage",
-      "percent": 0,
+      "percent": 0.1,
       "resetAt": "2026-09-14T00:00:00Z",
       "segments": [
         {
           "model": "glm-5.3-flash",
-          "requests": 2
+          "requests": 10
         }
       ]
     }
@@ -28,7 +28,7 @@
   "weeklyModels": [
     {
       "model": "glm-5.3-flash",
-      "requests": 2
+      "requests": 10
     }
   ],
   "extraBalance": 0,
