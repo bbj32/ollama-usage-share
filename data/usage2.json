@@ -1,6 +1,6 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-08T12:00:54.900Z",
+  "updatedAt": "2026-09-08T12:07:55.091Z",
   "meters": [
     {
       "label": "Session usage",
@@ -13,7 +13,7 @@
         },
         {
           "model": "web search",
-          "requests": 1
+          "requests": 2
         }
       ]
     },
@@ -32,7 +32,7 @@
         },
         {
           "model": "web search",
-          "requests": 27
+          "requests": 28
         },
         {
           "model": "web fetch",
@@ -52,7 +52,7 @@
     },
     {
       "model": "web search",
-      "requests": 27
+      "requests": 28
     },
     {
       "model": "web fetch",
