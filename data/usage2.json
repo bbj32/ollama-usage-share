@@ -1,6 +1,6 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-09T15:39:54.040Z",
+  "updatedAt": "2026-09-09T15:45:54.009Z",
   "meters": [
     {
       "label": "Session usage",
@@ -10,6 +10,10 @@
         {
           "model": "deepseek-v4-flash:0731",
           "requests": 21
+        },
+        {
+          "model": "web search",
+          "requests": 1
         }
       ]
     },
@@ -28,7 +32,7 @@
         },
         {
           "model": "web search",
-          "requests": 40
+          "requests": 41
         },
         {
           "model": "web fetch",
@@ -48,7 +52,7 @@
     },
     {
       "model": "web search",
-      "requests": 40
+      "requests": 41
     },
     {
       "model": "web fetch",
