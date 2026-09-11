@@ -1,6 +1,6 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-11T05:44:22.320Z",
+  "updatedAt": "2026-09-11T05:50:23.326Z",
   "meters": [
     {
       "label": "Session usage",
@@ -12,12 +12,12 @@
           "requests": 28
         },
         {
-          "model": "glm-5.3-flash",
-          "requests": 14
+          "model": "deepseek-v4.1-flash",
+          "requests": 36
         },
         {
-          "model": "deepseek-v4.1-flash",
-          "requests": 35
+          "model": "glm-5.3-flash",
+          "requests": 14
         }
       ]
     },
@@ -40,7 +40,7 @@
         },
         {
           "model": "deepseek-v4.1-flash",
-          "requests": 35
+          "requests": 36
         }
       ]
     }
@@ -60,7 +60,7 @@
     },
     {
       "model": "deepseek-v4.1-flash",
-      "requests": 35
+      "requests": 36
     }
   ],
   "account": "1"
