@@ -1,38 +1,43 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-11T17:15:49.235Z",
+  "updatedAt": "2026-09-11T17:18:17.043Z",
   "meters": [
     {
-      "label": "Session usage",
-      "percent": 26.9,
+      "label": "Session usage 31.5% used",
+      "percent": 31.5,
       "resetAt": "2026-09-11T22:00:00Z",
       "segments": [
         {
           "model": "deepseek-v4.1-flash",
-          "requests": 86
+          "requests": 96,
+          "color": "#4f46e5"
         }
       ]
     },
     {
-      "label": "Weekly usage",
-      "percent": 86.9,
+      "label": "Weekly usage 87.7% used",
+      "percent": 87.7,
       "resetAt": "2026-09-14T00:00:00Z",
       "segments": [
         {
           "model": "glm-5.3-flash",
-          "requests": 1766
-        },
-        {
-          "model": "deepseek-v4.1-flash",
-          "requests": 547
-        },
-        {
-          "model": "deepseek-v4-flash:0731",
-          "requests": 1069
+          "requests": 1766,
+          "color": "#3b82f6"
         },
         {
           "model": "web search",
-          "requests": 100
+          "requests": 100,
+          "color": "#3b82f6"
+        },
+        {
+          "model": "deepseek-v4.1-flash",
+          "requests": 557,
+          "color": "#4f46e5"
+        },
+        {
+          "model": "deepseek-v4-flash:0731",
+          "requests": 1069,
+          "color": "#4f46e5"
         }
       ]
     }
@@ -40,20 +45,23 @@
   "weeklyModels": [
     {
       "model": "glm-5.3-flash",
-      "requests": 1766
-    },
-    {
-      "model": "deepseek-v4.1-flash",
-      "requests": 547
-    },
-    {
-      "model": "deepseek-v4-flash:0731",
-      "requests": 1069
+      "requests": 1766,
+      "color": "#3b82f6"
     },
     {
       "model": "web search",
-      "requests": 100
+      "requests": 100,
+      "color": "#3b82f6"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "requests": 557,
+      "color": "#4f46e5"
+    },
+    {
+      "model": "deepseek-v4-flash:0731",
+      "requests": 1069,
+      "color": "#4f46e5"
     }
-  ],
-  "account": "1"
+  ]
 }
