@@ -1,42 +1,42 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-16T21:07:59.181Z",
+  "updatedAt": "2026-09-16T21:13:59.192Z",
   "meters": [
     {
       "label": "Session usage",
-      "percent": 19.5,
+      "percent": 20.3,
       "resetAt": "2026-09-16T22:01:53.846Z",
       "segments": [
         {
           "model": "deepseek-v4.1-flash",
-          "requests": 714
+          "requests": 729
         },
         {
           "model": "glm-5.3-flash",
-          "requests": 4
+          "requests": 7
         }
       ]
     },
     {
       "label": "Weekly usage",
-      "percent": 41.6,
+      "percent": 41.8,
       "resetAt": "2026-09-21T00:00:00.000Z",
       "segments": [
         {
           "model": "deepseek-v4.1-flash",
-          "requests": 3843
+          "requests": 3858
         },
         {
           "model": "web search",
           "requests": 45
         },
         {
-          "model": "web fetch",
-          "requests": 18
+          "model": "glm-5.3-flash",
+          "requests": 10
         },
         {
-          "model": "glm-5.3-flash",
-          "requests": 7
+          "model": "web fetch",
+          "requests": 18
         },
         {
           "model": "qwen3.5:397b",
@@ -48,19 +48,19 @@
   "weeklyModels": [
     {
       "model": "deepseek-v4.1-flash",
-      "requests": 3843
+      "requests": 3858
     },
     {
       "model": "web search",
       "requests": 45
     },
     {
-      "model": "web fetch",
-      "requests": 18
+      "model": "glm-5.3-flash",
+      "requests": 10
     },
     {
-      "model": "glm-5.3-flash",
-      "requests": 7
+      "model": "web fetch",
+      "requests": 18
     },
     {
       "model": "qwen3.5:397b",
