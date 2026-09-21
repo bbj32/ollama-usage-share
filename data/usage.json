@@ -1,19 +1,19 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-21T11:10:06.855Z",
+  "updatedAt": "2026-09-21T11:16:14.754Z",
   "meters": [
     {
       "label": "Session usage",
-      "percent": 50,
+      "percent": 75.6,
       "resetAt": "2026-09-21T12:00:00Z",
       "segments": [
         {
           "model": "kimi-k3",
-          "requests": 39
+          "requests": 65
         },
         {
           "model": "deepseek-v4.1-flash",
-          "requests": 186
+          "requests": 205
         },
         {
           "model": "qwen3.5:397b",
@@ -27,16 +27,16 @@
     },
     {
       "label": "Weekly usage",
-      "percent": 11.9,
+      "percent": 16.4,
       "resetAt": "2026-09-28T00:00:00Z",
       "segments": [
         {
           "model": "kimi-k3",
-          "requests": 75
+          "requests": 101
         },
         {
           "model": "deepseek-v4.1-flash",
-          "requests": 217
+          "requests": 236
         },
         {
           "model": "qwen3.5:397b",
@@ -52,11 +52,11 @@
   "weeklyModels": [
     {
       "model": "kimi-k3",
-      "requests": 75
+      "requests": 101
     },
     {
       "model": "deepseek-v4.1-flash",
-      "requests": 217
+      "requests": 236
     },
     {
       "model": "qwen3.5:397b",
