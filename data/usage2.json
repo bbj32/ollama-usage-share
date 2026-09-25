@@ -1,6 +1,6 @@
 {
   "plan": "pro",
-  "updatedAt": "2026-09-25T12:14:08.447Z",
+  "updatedAt": "2026-09-25T12:20:11.608Z",
   "meters": [
     {
       "label": "Session usage",
@@ -10,6 +10,14 @@
         {
           "model": "deepseek-v4.1-flash",
           "requests": 45
+        },
+        {
+          "model": "web search",
+          "requests": 1
+        },
+        {
+          "model": "web fetch",
+          "requests": 3
         }
       ]
     },
@@ -24,18 +32,18 @@
         },
         {
           "model": "web search",
-          "requests": 274
+          "requests": 275
         },
         {
           "model": "deepseek-v4-flash:0731",
           "requests": 15
         },
         {
-          "model": "qwen3.5:397b",
-          "requests": 1
+          "model": "web fetch",
+          "requests": 4
         },
         {
-          "model": "web fetch",
+          "model": "qwen3.5:397b",
           "requests": 1
         },
         {
@@ -52,18 +60,18 @@
     },
     {
       "model": "web search",
-      "requests": 274
+      "requests": 275
     },
     {
       "model": "deepseek-v4-flash:0731",
       "requests": 15
     },
     {
-      "model": "qwen3.5:397b",
-      "requests": 1
+      "model": "web fetch",
+      "requests": 4
     },
     {
-      "model": "web fetch",
+      "model": "qwen3.5:397b",
       "requests": 1
     },
     {
