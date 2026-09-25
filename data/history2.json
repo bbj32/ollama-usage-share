@@ -141,7 +141,12 @@
   },
   {
     "date": "2026-09-24",
-    "session": 41,
-    "weekly": 62.9
+    "session": 41.4,
+    "weekly": 63
+  },
+  {
+    "date": "2026-09-25",
+    "session": 41.6,
+    "weekly": 63.1
   }
 ]
