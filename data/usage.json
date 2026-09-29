@@ -1,20 +1,19 @@
 {
   "plan": "free",
-  "updatedAt": "2026-09-29T05:01:05.459Z",
+  "updatedAt": "2026-09-29T09:03:13.706Z",
   "meters": [
     {
-      "label": "Session usage",
+      "label": "Session usage 0% used",
       "percent": 0,
       "resetAt": "2026-09-29T10:00:00Z",
       "segments": []
     },
     {
-      "label": "Weekly usage",
+      "label": "Weekly usage 0% used",
       "percent": 0,
       "resetAt": "2026-10-05T00:00:00Z",
       "segments": []
     }
   ],
-  "weeklyModels": [],
-  "account": "1"
+  "weeklyModels": []
 }
