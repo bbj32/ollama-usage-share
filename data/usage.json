@@ -1,11 +1,11 @@
 {
   "plan": "free",
-  "updatedAt": "2026-09-29T10:01:10.361Z",
+  "updatedAt": "2026-09-29T15:01:09.971Z",
   "meters": [
     {
       "label": "Session usage",
       "percent": 0,
-      "resetAt": "2026-09-29T15:00:00Z",
+      "resetAt": "2026-09-29T20:00:00Z",
       "segments": []
     },
     {
