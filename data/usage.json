@@ -1,7 +1,6 @@
 {
   "plan": "free",
-  "extraBalance": null,
-  "updatedAt": "2026-10-09T00:01:05.730Z",
+  "updatedAt": "2026-10-09T03:08:41.643Z",
   "meters": [
     {
       "label": "Session usage 0% used",
@@ -16,6 +15,5 @@
       "segments": []
     }
   ],
-  "weeklyModels": [],
-  "account": "1"
+  "weeklyModels": []
 }
