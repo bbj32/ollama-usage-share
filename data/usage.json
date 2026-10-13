@@ -1,12 +1,12 @@
 {
   "plan": "free",
   "extraBalance": null,
-  "updatedAt": "2026-10-13T09:01:03.133Z",
+  "updatedAt": "2026-10-13T14:00:52.835Z",
   "meters": [
     {
       "label": "Session usage 0% used",
       "percent": 0,
-      "resetAt": "2026-10-13T14:00:00Z",
+      "resetAt": "2026-10-13T19:00:00Z",
       "segments": []
     },
     {
