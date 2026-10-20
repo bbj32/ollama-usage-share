@@ -1,19 +1,13 @@
 {
   "plan": "free",
   "extraBalance": null,
-  "updatedAt": "2026-10-20T10:13:36.733Z",
+  "updatedAt": "2026-10-20T11:00:36.748Z",
   "meters": [
     {
       "label": "Session usage 0% used",
       "percent": 0,
-      "resetAt": "2026-10-20T11:00:00Z",
-      "segments": [
-        {
-          "model": "gpt-oss:120b",
-          "requests": 1,
-          "color": "#525252"
-        }
-      ]
+      "resetAt": "2026-10-20T16:00:00Z",
+      "segments": []
     },
     {
       "label": "Weekly usage 0% used",
