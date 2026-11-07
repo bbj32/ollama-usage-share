@@ -1,11 +1,12 @@
 {
   "plan": null,
-  "updatedAt": "2026-11-07T01:18:02.464Z",
+  "extraBalance": null,
+  "updatedAt": "2026-11-07T04:00:10.050Z",
   "meters": [
     {
       "label": "Session usage 0% used",
       "percent": 0,
-      "resetAt": "2026-11-07T04:00:00Z",
+      "resetAt": "2026-11-07T09:00:00Z",
       "segments": []
     },
     {
@@ -15,5 +16,6 @@
       "segments": []
     }
   ],
-  "weeklyModels": []
+  "weeklyModels": [],
+  "account": "1"
 }
